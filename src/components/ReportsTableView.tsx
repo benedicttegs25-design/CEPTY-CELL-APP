@@ -60,9 +60,33 @@ export const ReportsTableView: React.FC<ReportsTableViewProps> = ({
   const [isUpdating, setIsUpdating] = useState(false);
   const [selectedImagePreview, setSelectedImagePreview] = useState<string | null>(null);
 
+  // --- Zone derivation helpers -------------------------------------------
+  // `Report` no longer carries a `zone` field directly, so we look it up
+  // via the report's cell instead. Falls back gracefully to '' if either
+  // the cell or its zone can't be found, so nothing crashes on missing data.
+  const cellsById = React.useMemo(() => {
+    const map = new Map<string, Cell>();
+    cells.forEach(c => map.set(c.id, c));
+    return map;
+  }, [cells]);
+
+  const getReportCell = (report: Report): Cell | undefined => {
+    return cellsById.get(report.cellId) || cells.find(c => c.name === report.cellName);
+  };
+
+  const getReportZoneName = (report: Report): string => {
+    const cell = getReportCell(report);
+    return cell?.zone || '';
+  };
+
+  const formatZoneName = (zoneName: string): string => {
+    return zoneName ? zoneName.replace(/Zone \d+ - /, '') : '—';
+  };
+
   // Apply filters
   const filteredReports = reports.filter(r => {
-    if (selectedZone !== 'All Zones' && r.zone !== selectedZone) return false;
+    const reportZone = getReportZoneName(r);
+    if (selectedZone !== 'All Zones' && reportZone !== selectedZone) return false;
     if (selectedCell !== 'all' && r.cellId !== selectedCell && r.cellName !== selectedCell) return false;
     if (selectedMeetingType !== 'all' && r.meetingType !== selectedMeetingType) return false;
     if (selectedStatus !== 'all' && r.status !== selectedStatus) return false;
@@ -73,7 +97,7 @@ export const ReportsTableView: React.FC<ReportsTableViewProps> = ({
       const match = 
         r.cellName.toLowerCase().includes(q) ||
         r.leaderName.toLowerCase().includes(q) ||
-        r.zone.toLowerCase().includes(q) ||
+        reportZone.toLowerCase().includes(q) ||
         (r.testimonies && r.testimonies.toLowerCase().includes(q));
       if (!match) return false;
     }
@@ -355,7 +379,7 @@ export const ReportsTableView: React.FC<ReportsTableViewProps> = ({
                     </td>
                     <td className="py-3.5 px-4">
                       <span className="text-slate-700 font-medium">
-                        {report.zone.replace(/Zone \d+ - /, '')}
+                        {formatZoneName(getReportZoneName(report))}
                       </span>
                     </td>
                     <td className="py-3.5 px-4">
@@ -418,7 +442,7 @@ export const ReportsTableView: React.FC<ReportsTableViewProps> = ({
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="text-sm font-bold text-slate-900">{report.cellName}</h3>
-                    <p className="text-xs text-slate-500">{report.leaderName} • {report.zone}</p>
+                    <p className="text-xs text-slate-500">{report.leaderName} • {formatZoneName(getReportZoneName(report))}</p>
                   </div>
                   {getStatusBadge(report.status)}
                 </div>
@@ -470,7 +494,7 @@ export const ReportsTableView: React.FC<ReportsTableViewProps> = ({
                   {activeReport.cellName}
                 </h3>
                 <p className="text-xs text-slate-400">
-                  Leader: <span className="text-white font-semibold">{activeReport.leaderName}</span> • {activeReport.zone}
+                  Leader: <span className="text-white font-semibold">{activeReport.leaderName}</span> • {formatZoneName(getReportZoneName(activeReport))}
                 </p>
               </div>
 
