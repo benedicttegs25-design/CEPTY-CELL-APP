@@ -14,9 +14,9 @@ export interface User {
   role: UserRole;
   email: string;
   phone: string;
-  zone: string;
+  zone?: string;
   cellId?: string;
-  cellName?: string;
+  cellName: string;
   status: 'active' | 'pending_approval';
   password?: string;
   avatarUrl?: string;
@@ -26,7 +26,7 @@ export interface User {
 export interface Cell {
   id: string;
   name: string;
-  zone: string;
+  zone?: string;
   leaderId: string;
   leaderName: string;
   leaderPhone: string;
@@ -56,7 +56,7 @@ export interface Report {
   leaderName: string;
   leaderPhone?: string;
   leaderEmail?: string;
-  zone: string;
+  zone?: string;
   date: string;
   meetingType: MeetingType;
   attendanceCell?: number;
