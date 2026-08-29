@@ -43,10 +43,39 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingCell, setEditingCell] = useState<Cell | null>(null);
   const [deletingCell, setDeletingCell] = useState<Cell | null>(null);
-  
+
+  // --- Zone derivation helpers -------------------------------------------
+  // `Cell` no longer carries a `zone` name string directly. We assume it now
+  // stores a `zoneId` reference into the `zones` list instead (the standard
+  // fix when a denormalized name field is removed). All zone *names* shown
+  // in this file are looked up here, so nothing calls .replace() or
+  // .toLowerCase() on undefined. If your Cell type uses a different field
+  // name for the zone reference, swap `getCellZoneId` below accordingly.
+  const zonesById = React.useMemo(() => {
+    const map = new Map<string, Zone>();
+    zones.forEach(z => map.set(z.id, z));
+    return map;
+  }, [zones]);
+
+  const getCellZoneId = (cell: Cell): string => {
+    // Support either a new `zoneId` field or, if some old records still
+    // have a `zone` value that happens to equal a zone's id, fall back to it.
+    return (cell as any).zoneId || (cell as any).zone || '';
+  };
+
+  const getCellZoneName = (cell: Cell): string => {
+    const zoneId = getCellZoneId(cell);
+    const zone = zonesById.get(zoneId);
+    return zone?.name || '';
+  };
+
+  const formatZoneName = (zoneName: string): string => {
+    return zoneName ? zoneName.replace(/Zone \d+ - /, '') : '—';
+  };
+
   // New cell form state
   const [name, setName] = useState('');
-  const [zone, setZone] = useState('Zone 1 - Kings Court');
+  const [zone, setZone] = useState(zones[0]?.id || '');
   const [leaderName, setLeaderName] = useState('');
   const [leaderPhone, setLeaderPhone] = useState('');
   const [leaderEmail, setLeaderEmail] = useState('');
@@ -72,7 +101,7 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
   const openEditModal = (cell: Cell) => {
     setEditingCell(cell);
     setEditName(cell.name);
-    setEditZone(cell.zone);
+    setEditZone(getCellZoneId(cell));
     setEditLeaderName(cell.leaderName);
     setEditLeaderPhone(cell.leaderPhone || '');
     setEditLeaderEmail(cell.leaderEmail || '');
@@ -92,7 +121,9 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
       if (onEditCell) {
         await onEditCell(editingCell.id, {
           name: editName.trim(),
-          zone: editZone,
+          // Sending both keeps this working whether your Cell type ended up
+          // with `zoneId` or kept `zone` as the reference field name.
+          ...( { zoneId: editZone } as any ),
           leaderName: editLeaderName.trim() || 'Assigned Leader',
           leaderPhone: editLeaderPhone.trim(),
           leaderEmail: editLeaderEmail.trim(),
@@ -121,14 +152,15 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
   };
 
   const filteredCells = cells.filter(cell => {
-    if (selectedZone !== 'All Zones' && cell.zone !== selectedZone) return false;
+    const cellZoneName = getCellZoneName(cell);
+    if (selectedZone !== 'All Zones' && cellZoneName !== selectedZone) return false;
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       return (
         cell.name.toLowerCase().includes(q) ||
         cell.leaderName.toLowerCase().includes(q) ||
-        cell.venue.toLowerCase().includes(q) ||
-        cell.zone.toLowerCase().includes(q)
+        (cell.venue || '').toLowerCase().includes(q) ||
+        cellZoneName.toLowerCase().includes(q)
       );
     }
     return true;
@@ -142,7 +174,7 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
     try {
       await onAddCell({
         name: name.trim(),
-        zone,
+        ...( { zoneId: zone } as any ),
         leaderName: leaderName.trim() || 'Assigned Leader',
         leaderPhone: leaderPhone.trim(),
         leaderEmail: leaderEmail.trim(),
@@ -240,7 +272,7 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
                   <span className="text-[10px] uppercase font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 inline-block truncate max-w-full">
-                    {cell.zone.replace(/Zone \d+ - /, '')}
+                    {formatZoneName(getCellZoneName(cell))}
                   </span>
                   <h3 className="text-base font-bold text-slate-900 mt-1.5 font-['Outfit'] group-hover:text-amber-700 transition-colors">
                     {cell.name}
@@ -378,7 +410,7 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
                     className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                   >
                     {zones.map(z => (
-                      <option key={z.id} value={z.name}>{z.name}</option>
+                      <option key={z.id} value={z.id}>{z.name}</option>
                     ))}
                   </select>
                 </div>
@@ -527,7 +559,7 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
 
             <div className="p-5 space-y-3 bg-slate-50">
               <p className="text-xs text-slate-700 leading-relaxed">
-                Are you sure you want to remove the fellowship unit <strong>"{deletingCell.name}"</strong> ({deletingCell.zone})?
+                Are you sure you want to remove the fellowship unit <strong>"{deletingCell.name}"</strong> ({formatZoneName(getCellZoneName(deletingCell))})?
               </p>
               <p className="text-[11px] text-slate-500">
                 This action will delete the cell from the directory. Past submitted reports will remain in the historical archive.
@@ -598,7 +630,7 @@ export const CellDirectoryView: React.FC<CellDirectoryViewProps> = ({
                     className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                   >
                     {zones.map(z => (
-                      <option key={z.id} value={z.name}>{z.name}</option>
+                      <option key={z.id} value={z.id}>{z.name}</option>
                     ))}
                   </select>
                 </div>
