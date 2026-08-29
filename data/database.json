@@ -1,191 +1,41 @@
 {
-  "zones": [
-    {
-      "id": "zone-1",
-      "name": "Zone 1 - Kings Court",
-      "targetAttendance": 150
-    },
-    {
-      "id": "zone-2",
-      "name": "Zone 2 - Victorious Haven",
-      "targetAttendance": 180
-    },
-    {
-      "id": "zone-3",
-      "name": "Zone 3 - Grace Arena",
-      "targetAttendance": 140
-    },
-    {
-      "id": "zone-4",
-      "name": "Zone 4 - Zoe Haven",
-      "targetAttendance": 160
-    },
-    {
-      "id": "zone-5",
-      "name": "Zone 5 - Triumph Dominion",
-      "targetAttendance": 130
-    }
-  ],
-  "cells": [
-    {
-      "id": "cell-1",
-      "name": "Royalty Teens Cell",
-      "zone": "Zone 1 - Kings Court",
-      "leaderId": "user-7",
-      "leaderName": "Brother Joshua Mensah",
-      "leaderPhone": "+234 810 123 4567",
-      "leaderEmail": "joshua.royalty@prolificchurch.ce",
-      "targetAttendance": 35,
-      "targetSouls": 10,
-      "meetingDay": "Saturday",
-      "meetingTime": "4:00 PM",
-      "venue": "14 Kingsway Boulevard, Lekki Phase 1",
-      "createdAt": "2026-02-01T00:00:00.000Z"
-    },
-    {
-      "id": "cell-2",
-      "name": "Dynasty Youth Fellowship",
-      "zone": "Zone 1 - Kings Court",
-      "leaderId": "user-8",
-      "leaderName": "Sister Grace Uche",
-      "leaderPhone": "+234 811 234 5678",
-      "leaderEmail": "grace.dynasty@prolificchurch.ce",
-      "targetAttendance": 45,
-      "targetSouls": 12,
-      "meetingDay": "Friday",
-      "meetingTime": "5:30 PM",
-      "venue": "Youth Centre Room 2, Church Annex",
-      "createdAt": "2026-02-05T00:00:00.000Z"
-    },
-    {
-      "id": "cell-3",
-      "name": "Luminaries Firebrand Cell",
-      "zone": "Zone 2 - Victorious Haven",
-      "leaderId": "user-9",
-      "leaderName": "Brother Caleb Nnadi",
-      "leaderPhone": "+234 812 345 6789",
-      "leaderEmail": "caleb.luminaries@prolificchurch.ce",
-      "targetAttendance": 50,
-      "targetSouls": 15,
-      "meetingDay": "Saturday",
-      "meetingTime": "5:00 PM",
-      "venue": "7 Heritage Avenue, Ikeja GRA",
-      "createdAt": "2026-02-08T00:00:00.000Z"
-    },
-    {
-      "id": "cell-4",
-      "name": "Ambassadors of Light",
-      "zone": "Zone 2 - Victorious Haven",
-      "leaderId": "user-10",
-      "leaderName": "Sister Deborah Akintola",
-      "leaderPhone": "+234 813 456 7890",
-      "leaderEmail": "deborah.ambassadors@prolificchurch.ce",
-      "targetAttendance": 40,
-      "targetSouls": 10,
-      "meetingDay": "Saturday",
-      "meetingTime": "3:30 PM",
-      "venue": "22 Horizon Estate, Maryland",
-      "createdAt": "2026-02-10T00:00:00.000Z"
-    },
-    {
-      "id": "cell-5",
-      "name": "Pacesetters Youth Hub",
-      "zone": "Zone 3 - Grace Arena",
-      "leaderId": "user-11",
-      "leaderName": "Brother Samuel Eze",
-      "leaderPhone": "+234 814 567 8901",
-      "leaderEmail": "samuel.pacesetters@prolificchurch.ce",
-      "targetAttendance": 35,
-      "targetSouls": 8,
-      "meetingDay": "Friday",
-      "meetingTime": "6:00 PM",
-      "venue": "5 Shalom Street, Surulere",
-      "createdAt": "2026-02-12T00:00:00.000Z"
-    },
-    {
-      "id": "cell-6",
-      "name": "Catalyst Global Cell",
-      "zone": "Zone 3 - Grace Arena",
-      "leaderId": "user-12",
-      "leaderName": "Sister Sharon Bello",
-      "leaderPhone": "+234 815 678 9012",
-      "leaderEmail": "sharon.catalyst@prolificchurch.ce",
-      "targetAttendance": 30,
-      "targetSouls": 7,
-      "meetingDay": "Saturday",
-      "meetingTime": "4:30 PM",
-      "venue": "Campus Hall B, University Gate",
-      "createdAt": "2026-02-15T00:00:00.000Z"
-    },
-    {
-      "id": "cell-7",
-      "name": "Dunamis Power Teens",
-      "zone": "Zone 4 - Zoe Haven",
-      "leaderId": "user-13",
-      "leaderName": "Brother David Bassey",
-      "leaderPhone": "+234 816 789 0123",
-      "leaderEmail": "david.dunamis@prolificchurch.ce",
-      "targetAttendance": 40,
-      "targetSouls": 10,
-      "meetingDay": "Sunday",
-      "meetingTime": "2:00 PM",
-      "venue": "Zoe Fellowship Suite, Victoria Island",
-      "createdAt": "2026-02-18T00:00:00.000Z"
-    },
-    {
-      "id": "cell-8",
-      "name": "Evergreen Impact Cell",
-      "zone": "Zone 4 - Zoe Haven",
-      "leaderId": "user-14",
-      "leaderName": "Sister Michelle Adeleke",
-      "leaderPhone": "+234 817 890 1234",
-      "leaderEmail": "michelle.evergreen@prolificchurch.ce",
-      "targetAttendance": 30,
-      "targetSouls": 8,
-      "meetingDay": "Saturday",
-      "meetingTime": "4:00 PM",
-      "venue": "11 Palm View Garden, Ikoyi",
-      "createdAt": "2026-08-25T14:30:00.000Z"
-    },
-    {
-      "id": "cell-9",
-      "name": "Victors Champions Cell",
-      "zone": "Zone 5 - Triumph Dominion",
-      "leaderId": "user-15",
-      "leaderName": "Brother Emmanuel Temitope",
-      "leaderPhone": "+234 818 901 2345",
-      "leaderEmail": "emmanuel.victors@prolificchurch.ce",
-      "targetAttendance": 35,
-      "targetSouls": 9,
-      "meetingDay": "Saturday",
-      "meetingTime": "4:00 PM",
-      "venue": "3 Grace Boulevard, Yaba",
-      "createdAt": "2026-08-27T09:15:00.000Z"
-    },
-    {
-      "id": "cell-10",
-      "name": "Overcomers Elite Teens",
-      "zone": "Zone 5 - Triumph Dominion",
-      "leaderId": "user-6",
-      "leaderName": "Brother Victor Kalu",
-      "leaderPhone": "+234 807 789 0123",
-      "leaderEmail": "victor.kalu@prolificchurch.ce",
-      "targetAttendance": 45,
-      "targetSouls": 12,
-      "meetingDay": "Friday",
-      "meetingTime": "5:00 PM",
-      "venue": "Dominion Hall, 88 Allen Avenue",
-      "createdAt": "2026-03-01T00:00:00.000Z"
-    }
-  ],
+  "zones": [],
+  "cells": [],
   "users": [
     {
       "id": "user-1",
-      "name": "Pastor Chris Oyakhilome & Pastor Mary",
+      "name": "Pastor Wendy",
       "role": "admin",
-      "email": "pastor@prolificchurch.ce",
+      "email": "pastorwendy@prolificchurch.ce",
       "phone": "+234 801 111 2222",
       "zone": "All Zones",
+      "password": "ChangeThis123!",
+      "status": "active",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "cellName": ""
+    },
+    {
+      "id": "user-2",
+      "name": "Pastor Praise",
+      "role": "admin",
+      "email": "pastorpraise@prolificchurch.ce",
+      "phone": "+234 801 111 2223",
+      "zone": "All Zones",
+      "password": "ChangeThis456!",
+      "status": "active",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "cellName": ""
+    },
+    {
+      "id": "user-3",
+      "name": "Pastor David",
+      "role": "admin",
+      "email": "pastordavid@prolificchurch.ce",
+      "phone": "+234 801 111 2224",
+      "zone": "All Zones",
+      "password": "ChangeThis789!",
       "status": "active",
       "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
       "createdAt": "2026-01-01T00:00:00.000Z",
@@ -193,15 +43,5 @@
     }
   ],
   "reports": [],
-  "notifications": [
-    {
-      "id": "notif-1",
-      "type": "reminder",
-      "title": "Weekly Cell Report Deadline Reminder",
-      "message": "Kindly submit your weekly cell meeting and outreach reports by Monday 12:00 PM to enable the Pastoral office to review zone metrics.",
-      "timestamp": "2026-08-28T08:00:00.000Z",
-      "read": false,
-      "targetRole": "cell_leader"
-    }
-  ]
+  "notifications": []
 }
