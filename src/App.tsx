@@ -17,7 +17,7 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // App Data State
-  // Fix: require login instead of auto-admin"
+  // Fix: require login instead of auto-admin
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     const saved = localStorage.getItem('ce_prolific_user');
     if (saved) {
@@ -28,7 +28,6 @@ export default function App() {
       }
     }
     return null;
-  });
   });
 
   const [reports, setReports] = useState<Report[]>([]);
