@@ -1,6 +1,6 @@
 {
-  "name": "Christ Embassy Prolific Teens & Youth Church Cell Portal",
-  "description": "Weekly and monthly cell report submission, Sunday/Wednesday service attendance tracking, analytics dashboard, pastoral approvals, and member outreach tracking for Christ Embassy Prolific Teens & Youth Church.",
+  "name": "CE Prolific Teens Church",
+  "description": "Weekly and monthly cell report submission, Sunday/Wednesday service attendance tracking, analytics dashboard, pastoral approvals, and member outreach tracking for CE Prolific Teens Church.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

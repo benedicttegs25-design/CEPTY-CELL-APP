@@ -53,114 +53,121 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-900 border-b border-amber-500/30 text-white shadow-xl no-print">
+    <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800/90 text-white shadow-xl no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-18">
+        <div className="flex items-center justify-between h-22 sm:h-24">
           
           {/* Brand Logo & Title */}
-          <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => setCurrentTab('submit')}>
-            <div className="w-11 h-11 bg-amber-500 rounded-full flex items-center justify-center text-slate-900 font-black text-lg shadow-lg shadow-amber-500/20 shrink-0">
-              CE
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-base sm:text-lg tracking-tight text-white font-['Outfit']">
-                  Christ Embassy Prolific
-                </span>
-                <span className="bg-amber-500 text-slate-900 font-black text-[9px] uppercase px-1.5 py-0.5 rounded tracking-widest">
-                  PORTAL
+          <div 
+            className="flex items-center gap-4.5 cursor-pointer group py-2 select-none" 
+            onClick={() => setCurrentTab('submit')}
+          >
+            <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-amber-300 via-amber-500 to-amber-600 p-[2px] shadow-xl shadow-amber-500/20 shrink-0 transition-transform duration-200 group-hover:scale-105">
+              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                <span className="font-black text-base sm:text-lg tracking-wider text-amber-400 font-serif">
+                  CE
                 </span>
               </div>
-              <p className="text-[11px] text-amber-400 font-medium tracking-widest uppercase">
-                Teens & Youth Church
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-2.5">
+                <span className="font-bold text-lg sm:text-xl md:text-2xl tracking-tight text-white leading-tight">
+                  CE Prolific Teens Church
+                </span>
+                <span className="hidden sm:inline-flex bg-amber-500/15 text-amber-300 border border-amber-500/30 font-extrabold text-[10px] uppercase px-2 py-0.5 rounded-md tracking-widest">
+                  Portal
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 font-medium tracking-wide mt-0.5">
+                Cell Ministry &amp; Leadership Portal
               </p>
             </div>
           </div>
 
           {/* Desktop Navigation Tabs */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-2 bg-slate-900/80 p-2 rounded-2xl border border-slate-800 shadow-inner">
             <button
               id="nav-tab-submit"
               onClick={() => setCurrentTab('submit')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase font-bold tracking-wider transition-all ${
+              className={`flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
                 currentTab === 'submit'
-                  ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                  ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
               }`}
             >
-              <PlusCircle className="w-4 h-4" />
-              Submit Report
+              <PlusCircle className="w-4.5 h-4.5 text-current" />
+              <span>Submit Report</span>
             </button>
 
             <button
               id="nav-tab-reports"
               onClick={() => setCurrentTab('reports')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase font-bold tracking-wider transition-all ${
+              className={`flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
                 currentTab === 'reports'
-                  ? 'bg-slate-800 text-amber-400 border border-amber-500/40'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                  ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
               }`}
             >
-              <FileText className="w-4 h-4" />
-              Reports & Reviews
+              <FileText className="w-4.5 h-4.5 text-current" />
+              <span>All Reports</span>
             </button>
 
             <button
               id="nav-tab-analytics"
               onClick={() => setCurrentTab('analytics')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase font-bold tracking-wider transition-all ${
+              className={`flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
                 currentTab === 'analytics'
-                  ? 'bg-slate-800 text-amber-400 border border-amber-500/40'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                  ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
               }`}
             >
-              <BarChart3 className="w-4 h-4" />
-              Analytics
+              <BarChart3 className="w-4.5 h-4.5 text-current" />
+              <span>Analytics</span>
             </button>
 
             <button
               id="nav-tab-cells"
               onClick={() => setCurrentTab('cells')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase font-bold tracking-wider transition-all ${
+              className={`flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
                 currentTab === 'cells'
-                  ? 'bg-slate-800 text-amber-400 border border-amber-500/40'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                  ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
               }`}
             >
-              <Layers className="w-4 h-4" />
-              Cells Directory
+              <Layers className="w-4.5 h-4.5 text-current" />
+              <span>Cells Directory</span>
             </button>
 
             {currentUser?.role === 'admin' && (
               <button
                 id="nav-tab-users"
                 onClick={() => setCurrentTab('users')}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase font-bold tracking-wider transition-all ${
+                className={`flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl text-sm font-semibold tracking-wide transition-all cursor-pointer ${
                   currentTab === 'users'
-                    ? 'bg-slate-800 text-amber-400 border border-amber-500/40'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                    ? 'bg-amber-500 text-slate-950 shadow-md font-bold'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/80'
                 }`}
               >
-                <Users className="w-4 h-4" />
-                Leaders & Users
+                <Users className="w-4.5 h-4.5 text-current" />
+                <span>Leaders &amp; Users</span>
               </button>
             )}
           </nav>
 
           {/* Right Action Icons & Auth Profile */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-3.5">
             
             {/* Notification Bell */}
             <button
               id="notifications-bell-btn"
               onClick={onOpenNotifications}
-              className="relative p-2 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+              className="relative p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer"
               aria-label="Notifications"
               title="Notifications & Broadcasts"
             >
-              <Bell className="w-4 h-4" />
+              <Bell className="w-4.5 h-4.5" />
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-slate-950 text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-amber-500 text-slate-950 text-[10px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center animate-pulse">
                   {unreadCount}
                 </span>
               )}
@@ -168,34 +175,34 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* User Profile / Login Button */}
             {currentUser ? (
-              <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
+              <div className="flex items-center gap-3.5 pl-3.5 border-l border-slate-800">
                 <div className="hidden sm:block text-right">
-                  <div className="text-xs font-bold text-white leading-tight truncate max-w-[150px]">
+                  <div className="text-sm font-bold text-white leading-tight truncate max-w-[170px]">
                     {currentUser.name}
                   </div>
-                  <div className="text-[10px] text-amber-400 font-medium">
+                  <div className="text-xs text-amber-400/90 font-medium mt-0.5">
                     {currentUser.role === 'admin' ? 'Pastor / Admin' : currentUser.cellName || 'Cell Leader'}
                   </div>
                 </div>
-                <div className="hidden xs:block">
+                <div className="hidden md:block">
                   {getRoleBadge(currentUser.role)}
                 </div>
                 <button
                   id="logout-btn"
                   onClick={onLogout}
-                  className="p-2 rounded-lg bg-slate-800/80 hover:bg-red-500/20 hover:text-red-300 border border-slate-700 text-slate-300 transition-colors cursor-pointer"
+                  className="p-3 rounded-xl bg-slate-900 hover:bg-rose-500/15 hover:text-rose-300 border border-slate-800 hover:border-rose-500/30 text-slate-400 transition-colors cursor-pointer"
                   title="Sign out"
                 >
-                  <LogOut className="w-4 h-4" />
+                  <LogOut className="w-4.5 h-4.5" />
                 </button>
               </div>
             ) : (
               <button
                 id="login-modal-open-btn"
                 onClick={onOpenAuth}
-                className="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md cursor-pointer"
+                className="flex items-center gap-2.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 px-5 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-amber-500/15 hover:shadow-amber-500/25 cursor-pointer"
               >
-                <LogIn className="w-3.5 h-3.5" />
+                <LogIn className="w-4.5 h-4.5" />
                 <span>Leader Login</span>
               </button>
             )}
@@ -204,7 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="mobile-menu-toggle"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 hover:text-white"
+              className="lg:hidden p-3 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
