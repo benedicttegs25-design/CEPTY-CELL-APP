@@ -45,7 +45,6 @@ export const PublicReportForm: React.FC<PublicReportFormProps> = ({
   const [leaderName, setLeaderName] = useState('');
   const [leaderPhone, setLeaderPhone] = useState('');
   const [leaderEmail, setLeaderEmail] = useState('');
-  const [zone, setZone] = useState('Zone 1 - Kings Court');
   const [date, setDate] = useState(() => new Date().toISOString().split('T')[0]);
   const [meetingType, setMeetingType] = useState<MeetingType>('Prayer and Planning');
   
@@ -81,9 +80,6 @@ export const PublicReportForm: React.FC<PublicReportFormProps> = ({
       setLeaderName(currentUser.name || '');
       setLeaderPhone(currentUser.phone || '');
       setLeaderEmail(currentUser.email || '');
-      if (currentUser.zone && currentUser.zone !== 'All Zones') {
-        setZone(currentUser.zone);
-      }
       if (currentUser.cellName) {
         setCellName(currentUser.cellName);
         const matched = cells.find(c => c.name.toLowerCase() === currentUser.cellName?.toLowerCase());
@@ -100,17 +96,12 @@ export const PublicReportForm: React.FC<PublicReportFormProps> = ({
     const matched = cells.find(c => c.name === selectedName);
     if (matched) {
       setSelectedCellId(matched.id);
-      setZone(matched.zone);
       if (!currentUser && matched.leaderName) {
         setLeaderName(matched.leaderName);
         setLeaderPhone(matched.leaderPhone || '');
         setLeaderEmail(matched.leaderEmail || '');
       }
     }
-  };
-
-  const handleZoneChange = (newZone: string) => {
-    setZone(newZone);
   };
 
   // Image Upload handler (Base64 file reading)
@@ -173,7 +164,6 @@ export const PublicReportForm: React.FC<PublicReportFormProps> = ({
         leaderName: leaderName.trim(),
         leaderPhone: leaderPhone.trim(),
         leaderEmail: leaderEmail.trim(),
-        zone,
         date,
         meetingType,
         attendanceCell: Number(attendanceCell) || 0,
@@ -232,7 +222,6 @@ export const PublicReportForm: React.FC<PublicReportFormProps> = ({
     if (!submittedReport) return '';
     const message = `*CHRIST EMBASSY PROLIFIC CHURCH - CELL REPORT*
 Cell: ${submittedReport.cellName}
-Zone: ${submittedReport.zone}
 Leader: ${submittedReport.leaderName}
 Date: ${submittedReport.date} (${submittedReport.meetingType})
 -----------------------------
@@ -266,7 +255,7 @@ _Submitted on Prolific Cell Portal (Status: Pending Review)_`;
               Glory to God! Report Submitted
             </h2>
             <p className="text-slate-600 text-sm max-w-lg mx-auto">
-              Thank you, <span className="text-amber-700 font-bold">{submittedReport.leaderName}</span>. Your cell report for <span className="text-slate-900 font-bold">{submittedReport.cellName}</span> has been logged and routed to your Zone Coordinator for review.
+              Thank you, <span className="text-amber-700 font-bold">{submittedReport.leaderName}</span>. Your cell report for <span className="text-slate-900 font-bold">{submittedReport.cellName}</span> has been logged and routed to your Pastoral leadership for review.
             </p>
           </div>
 
@@ -405,26 +394,6 @@ _Submitted on Prolific Cell Portal (Status: Pending Review)_`;
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Zone Selector */}
-                <div>
-                  <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1.5 tracking-wider">
-                    Zone / Group <span className="text-amber-600">*</span>
-                  </label>
-                  <select
-                    id="input-zone"
-                    value={zone}
-                    onChange={(e) => handleZoneChange(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors"
-                    required
-                  >
-                    {zones.map(z => (
-                      <option key={z.id} value={z.name}>
-                        {z.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
                 {/* Cell Name (with autocomplete suggestion from existing cells) */}
                 <div>
                   <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1.5 tracking-wider">
@@ -443,7 +412,7 @@ _Submitted on Prolific Cell Portal (Status: Pending Review)_`;
                     />
                     <datalist id="cells-datalist">
                       {cells.map(c => (
-                        <option key={c.id} value={c.name}>{c.zone} - {c.leaderName}</option>
+                        <option key={c.id} value={c.name}>{c.leaderName}</option>
                       ))}
                     </datalist>
                   </div>
@@ -468,7 +437,7 @@ _Submitted on Prolific Cell Portal (Status: Pending Review)_`;
                 {/* Leader Phone / Contact */}
                 <div>
                   <label className="block text-[10px] uppercase font-bold text-slate-500 mb-1.5 tracking-wider">
-                    Leader Phone Number <span className="text-slate-400 text-[9px] font-normal">(for Coordinator contact)</span>
+                    Leader Phone Number <span className="text-slate-400 text-[9px] font-normal">(for Pastoral contact)</span>
                   </label>
                   <input
                     id="input-leader-phone"
@@ -741,7 +710,7 @@ _Submitted on Prolific Cell Portal (Status: Pending Review)_`;
                     rows={2}
                     value={challenges}
                     onChange={(e) => setChallenges(e.target.value)}
-                    placeholder="Any bottlenecks or assistance required from your Zone Coordinator..."
+                    placeholder="Any bottlenecks or assistance required from your Pastoral leadership..."
                     className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 transition-colors resize-y"
                   />
                 </div>
