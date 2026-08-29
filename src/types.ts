@@ -18,6 +18,7 @@ export interface User {
   cellId?: string;
   cellName?: string;
   status: 'active' | 'pending_approval';
+  password?: string;
   avatarUrl?: string;
   createdAt: string;
 }
