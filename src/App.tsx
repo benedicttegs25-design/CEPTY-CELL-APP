@@ -17,8 +17,8 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // App Data State
+  // Fix: require login instead of auto-admin"
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
-    // Default to admin for great initial out-of-the-box exploration, or restore from localStorage
     const saved = localStorage.getItem('ce_prolific_user');
     if (saved) {
       try {
@@ -27,16 +27,8 @@ export default function App() {
         // Fallback
       }
     }
-    return {
-      id: "user-1",
-      name: "Pastor Chris Oyakhilome & Pastor Mary",
-      role: "admin",
-      email: "pastor@prolificchurch.ce",
-      phone: "+234 801 111 2222",
-      zone: "All Zones",
-      status: "active",
-      createdAt: "2026-01-01T00:00:00.000Z"
-    };
+    return null;
+  });
   });
 
   const [reports, setReports] = useState<Report[]>([]);
