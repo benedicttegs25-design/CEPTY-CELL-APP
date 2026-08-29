@@ -26,13 +26,7 @@ interface DatabaseSchema {
   notifications: NotificationItem[];
 }
 
-const initialZones: Zone[] = [
-  { id: "zone-1", name: "Zone 1 - Kings Court", targetAttendance: 150 },
-  { id: "zone-2", name: "Zone 2 - Victorious Haven", targetAttendance: 180 },
-  { id: "zone-3", name: "Zone 3 - Grace Arena", targetAttendance: 140 },
-  { id: "zone-4", name: "Zone 4 - Zoe Haven", targetAttendance: 160 },
-  { id: "zone-5", name: "Zone 5 - Triumph Dominion", targetAttendance: 130 },
-];
+const initialZones: Zone[] = [];
 
 const initialUsers: User[] = [
   {
@@ -41,7 +35,6 @@ const initialUsers: User[] = [
     role: "admin",
     email: "pastorwendy@prolificchurch.ce",
     phone: "+234 801 111 2222",
-    zone: "All Zones",
     password: "ChangeThis123!",
     status: "active",
     avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
@@ -54,7 +47,6 @@ const initialUsers: User[] = [
     role: "admin",
     email: "pastorpraise@prolificchurch.ce",
     phone: "+234 801 111 2223",
-    zone: "All Zones",
     password: "ChangeThis456!",
     status: "active",
     avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
@@ -67,7 +59,6 @@ const initialUsers: User[] = [
     role: "admin",
     email: "pastordavid@prolificchurch.ce",
     phone: "+234 801 111 2224",
-    zone: "All Zones",
     password: "ChangeThis789!",
     status: "active",
     avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
@@ -76,158 +67,7 @@ const initialUsers: User[] = [
   }
 ];
 
-const initialCells: Cell[] = [
-  {
-    id: "cell-1",
-    name: "Royalty Teens Cell",
-    zone: "Zone 1 - Kings Court",
-    leaderId: "user-7",
-    leaderName: "Brother Joshua Mensah",
-    leaderPhone: "+234 810 123 4567",
-    leaderEmail: "joshua.royalty@prolificchurch.ce",
-    targetAttendance: 35,
-    targetSouls: 10,
-    meetingDay: "Saturday",
-    meetingTime: "4:00 PM",
-    venue: "14 Kingsway Boulevard, Lekki Phase 1",
-    createdAt: "2026-02-01T00:00:00.000Z",
-  },
-  {
-    id: "cell-2",
-    name: "Dynasty Youth Fellowship",
-    zone: "Zone 1 - Kings Court",
-    leaderId: "user-8",
-    leaderName: "Sister Grace Uche",
-    leaderPhone: "+234 811 234 5678",
-    leaderEmail: "grace.dynasty@prolificchurch.ce",
-    targetAttendance: 45,
-    targetSouls: 12,
-    meetingDay: "Friday",
-    meetingTime: "5:30 PM",
-    venue: "Youth Centre Room 2, Church Annex",
-    createdAt: "2026-02-05T00:00:00.000Z",
-  },
-  {
-    id: "cell-3",
-    name: "Luminaries Firebrand Cell",
-    zone: "Zone 2 - Victorious Haven",
-    leaderId: "user-9",
-    leaderName: "Brother Caleb Nnadi",
-    leaderPhone: "+234 812 345 6789",
-    leaderEmail: "caleb.luminaries@prolificchurch.ce",
-    targetAttendance: 50,
-    targetSouls: 15,
-    meetingDay: "Saturday",
-    meetingTime: "5:00 PM",
-    venue: "7 Heritage Avenue, Ikeja GRA",
-    createdAt: "2026-02-08T00:00:00.000Z",
-  },
-  {
-    id: "cell-4",
-    name: "Ambassadors of Light",
-    zone: "Zone 2 - Victorious Haven",
-    leaderId: "user-10",
-    leaderName: "Sister Deborah Akintola",
-    leaderPhone: "+234 813 456 7890",
-    leaderEmail: "deborah.ambassadors@prolificchurch.ce",
-    targetAttendance: 40,
-    targetSouls: 10,
-    meetingDay: "Saturday",
-    meetingTime: "3:30 PM",
-    venue: "22 Horizon Estate, Maryland",
-    createdAt: "2026-02-10T00:00:00.000Z",
-  },
-  {
-    id: "cell-5",
-    name: "Pacesetters Youth Hub",
-    zone: "Zone 3 - Grace Arena",
-    leaderId: "user-11",
-    leaderName: "Brother Samuel Eze",
-    leaderPhone: "+234 814 567 8901",
-    leaderEmail: "samuel.pacesetters@prolificchurch.ce",
-    targetAttendance: 35,
-    targetSouls: 8,
-    meetingDay: "Friday",
-    meetingTime: "6:00 PM",
-    venue: "5 Shalom Street, Surulere",
-    createdAt: "2026-02-12T00:00:00.000Z",
-  },
-  {
-    id: "cell-6",
-    name: "Catalyst Global Cell",
-    zone: "Zone 3 - Grace Arena",
-    leaderId: "user-12",
-    leaderName: "Sister Sharon Bello",
-    leaderPhone: "+234 815 678 9012",
-    leaderEmail: "sharon.catalyst@prolificchurch.ce",
-    targetAttendance: 30,
-    targetSouls: 7,
-    meetingDay: "Saturday",
-    meetingTime: "4:30 PM",
-    venue: "Campus Hall B, University Gate",
-    createdAt: "2026-02-15T00:00:00.000Z",
-  },
-  {
-    id: "cell-7",
-    name: "Dunamis Power Teens",
-    zone: "Zone 4 - Zoe Haven",
-    leaderId: "user-13",
-    leaderName: "Brother David Bassey",
-    leaderPhone: "+234 816 789 0123",
-    leaderEmail: "david.dunamis@prolificchurch.ce",
-    targetAttendance: 40,
-    targetSouls: 10,
-    meetingDay: "Sunday",
-    meetingTime: "2:00 PM",
-    venue: "Zoe Fellowship Suite, Victoria Island",
-    createdAt: "2026-02-18T00:00:00.000Z",
-  },
-  {
-    id: "cell-8",
-    name: "Evergreen Impact Cell",
-    zone: "Zone 4 - Zoe Haven",
-    leaderId: "user-14",
-    leaderName: "Sister Michelle Adeleke",
-    leaderPhone: "+234 817 890 1234",
-    leaderEmail: "michelle.evergreen@prolificchurch.ce",
-    targetAttendance: 30,
-    targetSouls: 8,
-    meetingDay: "Saturday",
-    meetingTime: "4:00 PM",
-    venue: "11 Palm View Garden, Ikoyi",
-    createdAt: "2026-08-25T14:30:00.000Z",
-  },
-  {
-    id: "cell-9",
-    name: "Victors Champions Cell",
-    zone: "Zone 5 - Triumph Dominion",
-    leaderId: "user-15",
-    leaderName: "Brother Emmanuel Temitope",
-    leaderPhone: "+234 818 901 2345",
-    leaderEmail: "emmanuel.victors@prolificchurch.ce",
-    targetAttendance: 35,
-    targetSouls: 9,
-    meetingDay: "Saturday",
-    meetingTime: "4:00 PM",
-    venue: "3 Grace Boulevard, Yaba",
-    createdAt: "2026-08-27T09:15:00.000Z",
-  },
-  {
-    id: "cell-10",
-    name: "Overcomers Elite Teens",
-    zone: "Zone 5 - Triumph Dominion",
-    leaderId: "user-6",
-    leaderName: "Brother Victor Kalu",
-    leaderPhone: "+234 807 789 0123",
-    leaderEmail: "victor.kalu@prolificchurch.ce",
-    targetAttendance: 45,
-    targetSouls: 12,
-    meetingDay: "Friday",
-    meetingTime: "5:00 PM",
-    venue: "Dominion Hall, 88 Allen Avenue",
-    createdAt: "2026-03-01T00:00:00.000Z",
-  }
-];
+const initialCells: Cell[] = [];
 
 const initialReports: Report[] = [];
 
@@ -236,7 +76,7 @@ const initialNotifications: NotificationItem[] = [
     id: "notif-1",
     type: "reminder",
     title: "Weekly Cell Report Deadline Reminder",
-    message: "Kindly submit your weekly cell meeting and outreach reports by Monday 12:00 PM to enable the Pastoral office to review zone metrics.",
+    message: "Kindly submit your weekly cell meeting and outreach reports by Monday 12:00 PM to enable the Pastoral office to review metrics.",
     timestamp: "2026-08-28T08:00:00.000Z",
     read: false,
     targetRole: "cell_leader"
@@ -298,21 +138,9 @@ function saveDatabase(data: DatabaseSchema): void {
 
 // User credentials mapping
 const userPasswords: Record<string, string[]> = {
-  "pastor@prolificchurch.ce": ["Pastor@Prolific2026", "pastor123", "pastor2026"],
-  "joshua.royalty@prolificchurch.ce": ["Joshua@Cell2026", "joshua123", "leader123", "Leader@2026"],
-  "grace.dynasty@prolificchurch.ce": ["Grace@Cell2026", "grace123", "leader123", "Leader@2026"],
-  "caleb.luminaries@prolificchurch.ce": ["Caleb@Cell2026", "caleb123", "leader123", "Leader@2026"],
-  "deborah.ambassadors@prolificchurch.ce": ["Deborah@Cell2026", "deborah123", "leader123", "Leader@2026"],
-  "samuel.pacesetters@prolificchurch.ce": ["Samuel@Cell2026", "samuel123", "leader123", "Leader@2026"],
-  "sharon.catalyst@prolificchurch.ce": ["Sharon@Cell2026", "sharon123", "leader123", "Leader@2026"],
-  "david.dunamis@prolificchurch.ce": ["David@Cell2026", "david123", "leader123", "Leader@2026"],
-  "michelle.evergreen@prolificchurch.ce": ["Michelle@Cell2026", "michelle123", "leader123", "Leader@2026"],
-  "emmanuel.victors@prolificchurch.ce": ["Emmanuel@Cell2026", "emmanuel123", "leader123", "Leader@2026"],
-  "victor.kalu@prolificchurch.ce": ["Victor@Cell2026", "victor123", "leader123", "Leader@2026"],
-  "daniel.osaigbovo@prolificchurch.ce": ["Daniel@Cell2026", "daniel123", "leader123", "Leader@2026"],
-  "esther.chukwu@prolificchurch.ce": ["Esther@Cell2026", "esther123", "leader123", "Leader@2026"],
-  "praise.adeyemi@prolificchurch.ce": ["Praise@Cell2026", "praise123", "leader123", "Leader@2026"],
-  "blessing.okon@prolificchurch.ce": ["Blessing@Cell2026", "blessing123", "leader123", "Leader@2026"],
+  "pastorwendy@prolificchurch.ce": ["ChangeThis123!"],
+  "pastorpraise@prolificchurch.ce": ["ChangeThis456!"],
+  "pastordavid@prolificchurch.ce": ["ChangeThis789!"],
 };
 
 // ----------------------------------------------------
@@ -323,7 +151,7 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", service: "Christ Embassy Prolific Church Cell Portal API", timestamp: new Date().toISOString() });
 });
 
-// Zones
+// Zones (kept as empty endpoint so old frontend calls don't break)
 app.get("/api/zones", (req, res) => {
   const db = getDatabase();
   res.json(db.zones);
@@ -332,24 +160,19 @@ app.get("/api/zones", (req, res) => {
 // Cells
 app.get("/api/cells", (req, res) => {
   const db = getDatabase();
-  const zoneFilter = req.query.zone as string | undefined;
-  if (zoneFilter && zoneFilter !== "All Zones") {
-    return res.json(db.cells.filter(c => c.zone === zoneFilter));
-  }
   res.json(db.cells);
 });
 
 app.post("/api/cells", (req, res) => {
   const db = getDatabase();
   const cellData = req.body;
-  if (!cellData.name || !cellData.zone) {
-    return res.status(400).json({ error: "Cell name and Zone are required" });
+  if (!cellData.name) {
+    return res.status(400).json({ error: "Cell name is required" });
   }
 
   const newCell: Cell = {
     id: `cell-${Date.now()}`,
     name: cellData.name,
-    zone: cellData.zone,
     leaderId: cellData.leaderId || `user-${Date.now()}`,
     leaderName: cellData.leaderName || "Assigned Leader",
     leaderPhone: cellData.leaderPhone || "",
@@ -360,7 +183,7 @@ app.post("/api/cells", (req, res) => {
     meetingTime: cellData.meetingTime || "4:00 PM",
     venue: cellData.venue || "Church Annex Room",
     createdAt: new Date().toISOString()
-  };
+  } as Cell;
 
   db.cells.unshift(newCell);
   saveDatabase(db);
@@ -429,12 +252,11 @@ app.post("/api/users", (req, res) => {
     role: userData.role || "cell_leader",
     email: userData.email,
     phone: userData.phone || "",
-    zone: userData.zone || "Zone 1 - Kings Court",
     cellId: userData.cellId,
     cellName: userData.cellName,
     status: userData.status || "active",
     createdAt: new Date().toISOString()
-  };
+  } as User;
 
   db.users.push(newUser);
   saveDatabase(db);
@@ -519,7 +341,7 @@ app.post("/api/auth/login", (req, res) => {
 });
 
 app.post("/api/auth/register", (req, res) => {
-  const { name, email, phone, zone, cellName, proposedRole } = req.body;
+  const { name, email, phone, cellName, proposedRole } = req.body;
   const db = getDatabase();
 
   if (!name || !email || !phone) {
@@ -537,11 +359,10 @@ app.post("/api/auth/register", (req, res) => {
     role: (proposedRole as any) || "cell_leader",
     email,
     phone,
-    zone: zone || "Zone 1 - Kings Court",
     cellName: cellName || "New Cell Unit",
     status: "pending_approval",
     createdAt: new Date().toISOString()
-  };
+  } as User;
 
   db.users.push(newUser);
 
@@ -550,7 +371,7 @@ app.post("/api/auth/register", (req, res) => {
     id: `notif-${Date.now()}`,
     type: "system",
     title: "New Leader Registration Pending Approval",
-    message: `${name} has registered as a ${newUser.role} for ${zone}. Please review and activate account.`,
+    message: `${name} has registered as a ${newUser.role}. Please review and activate account.`,
     timestamp: new Date().toISOString(),
     read: false,
     targetRole: "admin"
@@ -582,11 +403,8 @@ app.get("/api/reports", (req, res) => {
   const db = getDatabase();
   let results = [...db.reports];
 
-  const { zone, cellId, meetingType, status, startDate, endDate, search, leaderId } = req.query;
+  const { cellId, meetingType, status, startDate, endDate, search, leaderId } = req.query;
 
-  if (zone && zone !== "All Zones") {
-    results = results.filter(r => r.zone === zone);
-  }
   if (cellId && cellId !== "all") {
     results = results.filter(r => r.cellId === cellId);
   }
@@ -610,8 +428,7 @@ app.get("/api/reports", (req, res) => {
     results = results.filter(r => 
       r.cellName.toLowerCase().includes(q) ||
       r.leaderName.toLowerCase().includes(q) ||
-      (r.testimonies && r.testimonies.toLowerCase().includes(q)) ||
-      r.zone.toLowerCase().includes(q)
+      (r.testimonies && r.testimonies.toLowerCase().includes(q))
     );
   }
 
@@ -644,7 +461,6 @@ app.post("/api/reports", (req, res) => {
     c.id === body.cellId
   );
 
-  const zone = body.zone || (matchedCell ? matchedCell.zone : "Zone 1 - Kings Court");
   const cellId = matchedCell ? matchedCell.id : (body.cellId || `cell-${Date.now()}`);
 
   // If cell didn't exist, create it in registry
@@ -652,7 +468,6 @@ app.post("/api/reports", (req, res) => {
     const createdCell: Cell = {
       id: cellId,
       name: body.cellName,
-      zone: zone,
       leaderId: body.leaderId || `user-${Date.now()}`,
       leaderName: body.leaderName,
       leaderPhone: body.leaderPhone || "",
@@ -663,7 +478,7 @@ app.post("/api/reports", (req, res) => {
       meetingTime: "4:00 PM",
       venue: "Church Fellowship Unit",
       createdAt: new Date().toISOString()
-    };
+    } as Cell;
     db.cells.push(createdCell);
   }
 
@@ -679,7 +494,6 @@ app.post("/api/reports", (req, res) => {
     leaderName: body.leaderName,
     leaderPhone: body.leaderPhone,
     leaderEmail: body.leaderEmail,
-    zone: zone,
     date: body.date,
     meetingType: body.meetingType || "Prayer and Planning",
     attendanceCell: attendanceTotal,
@@ -697,7 +511,7 @@ app.post("/api/reports", (req, res) => {
     nextMeetingDate: body.nextMeetingDate || "",
     status: "pending",
     createdAt: new Date().toISOString()
-  };
+  } as Report;
 
   db.reports.unshift(newReport);
 
@@ -710,7 +524,6 @@ app.post("/api/reports", (req, res) => {
     timestamp: new Date().toISOString(),
     read: false,
     targetRole: "admin",
-    targetZone: newReport.zone,
     reportId: newReport.id
   });
 
@@ -766,15 +579,11 @@ app.delete("/api/reports/:id", (req, res) => {
 // Analytics Dashboard Endpoint
 app.get("/api/analytics", (req, res) => {
   const db = getDatabase();
-  const { zone, startDate, endDate } = req.query;
+  const { startDate, endDate } = req.query;
 
   let filteredReports = [...db.reports];
   let filteredCells = [...db.cells];
 
-  if (zone && zone !== "All Zones") {
-    filteredReports = filteredReports.filter(r => r.zone === zone);
-    filteredCells = filteredCells.filter(c => c.zone === zone);
-  }
   if (startDate) {
     filteredReports = filteredReports.filter(r => r.date >= (startDate as string));
   }
@@ -793,7 +602,7 @@ app.get("/api/analytics", (req, res) => {
   const totalOffering = filteredReports.reduce((sum, r) => sum + (r.offering || 0), 0);
   const pendingApprovalsCount = filteredReports.filter(r => r.status === "pending").length;
 
-  // Cells reporting compliance for latest 7-14 days
+  // Cells reporting compliance
   const reportedCellIds = new Set(filteredReports.map(r => r.cellId));
   const reportingCellsCount = reportedCellIds.size;
   const totalCellsCount = filteredCells.length;
@@ -803,11 +612,10 @@ app.get("/api/analytics", (req, res) => {
   const unreportedCells = filteredCells.filter(c => !reportedCellIds.has(c.id));
 
   // Top Performing Cells
-  const cellMap = new Map<string, { cellName: string; zone: string; leaderName: string; totalAttendance: number; soulsWon: number; firstTimers: number; reportCount: number }>();
+  const cellMap = new Map<string, { cellName: string; leaderName: string; totalAttendance: number; soulsWon: number; firstTimers: number; reportCount: number }>();
   filteredReports.forEach(r => {
     const existing = cellMap.get(r.cellId) || {
       cellName: r.cellName,
-      zone: r.zone,
       leaderName: r.leaderName,
       totalAttendance: 0,
       soulsWon: 0,
@@ -823,7 +631,7 @@ app.get("/api/analytics", (req, res) => {
 
   const topPerformingCells = Array.from(cellMap.values())
     .sort((a, b) => (b.soulsWon * 2 + b.totalAttendance) - (a.soulsWon * 2 + a.totalAttendance))
-    .slice(0, 5);
+    .slice(0, 5) as any;
 
   // Weekly Trends
   const weeklyTrends = totalReports > 0 ? [
@@ -837,23 +645,6 @@ app.get("/api/analytics", (req, res) => {
     { weekLabel: "Wk 3", attendance: 0, sundayAttendance: 0, wednesdayAttendance: 0, soulsWon: 0, firstTimers: 0, reportsCount: 0 },
     { weekLabel: "Current", attendance: 0, sundayAttendance: 0, wednesdayAttendance: 0, soulsWon: 0, firstTimers: 0, reportsCount: 0 }
   ];
-
-  // Zone Stats
-  const zoneStats = db.zones.map(z => {
-    const zoneReps = db.reports.filter(r => r.zone === z.name);
-    const zoneCells = db.cells.filter(c => c.zone === z.name);
-    const zReportedCellIds = new Set(zoneReps.map(r => r.cellId));
-    return {
-      zoneName: z.name,
-      cellsCount: zoneCells.length,
-      totalAttendance: zoneReps.reduce((s, r) => s + (r.attendanceTotal || 0), 0),
-      totalSundayAttendance: zoneReps.reduce((s, r) => s + (r.attendanceSunday || 0), 0),
-      totalWednesdayAttendance: zoneReps.reduce((s, r) => s + (r.attendanceWednesday || 0), 0),
-      soulsWon: zoneReps.reduce((s, r) => s + (r.soulsWon || 0), 0),
-      firstTimers: zoneReps.reduce((s, r) => s + (r.firstTimers || 0), 0),
-      complianceRate: zoneCells.length > 0 ? Math.round((zReportedCellIds.size / zoneCells.length) * 100) : 100
-    };
-  });
 
   const summary: AnalyticsSummary = {
     totalReports,
@@ -872,7 +663,7 @@ app.get("/api/analytics", (req, res) => {
     unreportedCells,
     topPerformingCells,
     weeklyTrends,
-    zoneStats
+    zoneStats: []
   };
 
   res.json(summary);
